@@ -5,17 +5,19 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
+import { routing } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloComponent,
+    HelloComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
