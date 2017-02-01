@@ -15,7 +15,6 @@ import { Component } from '@angular/core';
 
   `
   //templateUrl: './parallax.component.html',
-  //directives: [ ng2parallax ]
   //styleUrls: ['./parallax.component.css']
   
   
