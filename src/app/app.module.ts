@@ -1,24 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { Http,HttpModule, BrowserXhr, XHRBackend } from '@angular/http';
 
- import { AppComponent } from './app.component';
-//import { HelloComponent } from './hello/hello.component';
-//import { routing } from './app.routes';
+import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routes';
-//import { ParallaxComponent } from './parallax/parallax.component';
-import { ng2parallax } from './parallax/parallax.directive';
+import { ng2parallax } from './directive/parallax.directive';
 
+// interceptor
+import { MyXHRBackend } from './utils/MyXHRBackend';
+import { CORSExtBrowserXhr } from './utils/CORSExtBrowserXhr';
+import { LoginService } from 'app/service/LoginService'
+
+
+/**
+ * @author srini
+ */
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    //HelloComponent,
-    //ParallaxComponent,
     ng2parallax
-   // ParallaxDirective
+    
     
   ],
   imports: [
@@ -27,7 +31,10 @@ import { ng2parallax } from './parallax/parallax.directive';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{provide: BrowserXhr, useClass : CORSExtBrowserXhr},
+              {provide: Http, useClass : MyXHRBackend},
+              LoginService
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
